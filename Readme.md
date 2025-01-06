@@ -1,6 +1,7 @@
 # Overview  
 Repository to track development and learning related to ReactJS.  
 # Notes  
+
 1. **Why does ReactJS need NodeJS**  
 - ReactJS code contain JSX which does not directly run on browser.  
     - NodeJS provides platform to run our ReactJS code while development.  
@@ -8,7 +9,11 @@ Repository to track development and learning related to ReactJS.
 - The code written is not optimized for production(eg: minified).  
     - Process of shortening variable and function names.  
     - Process of removing white-spaces from our file.  
-*This minifies our code so that the file to be downloaded during requests is small in size.*  
+
+*This minifies our code so that the file to be downloaded during requests is small in size.  
+Due to this build process, some projects have `jsx` files while other can work with `js` files.  
+Similarly, some projects have extension in import while others do not.*  
+
 2. **Components**  
 These are small building blocks which compose the UI. The size of a module depends on how small a module the developer wants.  
 **Why Component based approach?**  
@@ -18,3 +23,34 @@ These are small building blocks which compose the UI. The size of a module depen
 **Rules for Component Functions**
 - Name starts with uppercase character. It follows PascalCase(first letter of all words in uppercase) convention.  
 - Returns `Renderable` content i.e. it must return a value that can be rendered("displayed on screen") by React. It mostly returns JSX but string, number, boolean, null, array are also allowed.  
+
+***Defining a component***
+```jsx
+function Header() {
+  return (
+    <header>
+        <img src="src/assets/react-core-concepts.png" alt="Stylized atom" />
+        <h1>React Essentials</h1>
+        <p>
+          Fundamental React concepts you will need for almost any app you are
+          going to build!
+        </p>
+      </header>
+  );
+}
+// Multi-line return statement must be wrapped within parenthesis.
+```  
+
+***Using a component***
+```jsx
+function App() {
+  return (
+    <div>
+      // ...
+      <Header />
+      // ...
+    </div>
+  );
+}
+// We can use either self closing TAG or expanded TAG
+```
