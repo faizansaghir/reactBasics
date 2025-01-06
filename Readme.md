@@ -53,4 +53,56 @@ function App() {
   );
 }
 // We can use either self closing TAG or expanded TAG
+```  
+
+3. **Built-in vs Custom Components**  
+- ***Built-in Component***:  
+    - Name start with lowercase character.  
+    - Only valid, oficially defined HTML elements are allowed.  
+    - Are rendered as DOM nodes by React(i.e. displayed on the screen).  
+- ***Custom Component***:
+    - Name starts with uppercase character.  
+    - Defined by developer, wraps built-in or/and other custom components.  
+    - React traverses the component tree until it has only built-in components left.  
+
+4. **Populating Dynamic Value in JSX**  
+If we use `{}` anywhere between expanded tag or value of attribute of a tag, we tell React that the value of the expression is to be substitued in place of the expression. 
+```jsx
+const reactDescription = ['Fundamental', 'Crucial', 'Core']
+
+function genRandomInt(max) {
+  return Math.floor(Math.random()*(max+1));
+}
+
+function Header() {
+  const description = reactDescription[genRandomInt(2)]
+
+  return (
+    <header>
+        // ...
+        {description} React concepts you will need for almost any app you are
+        going to build!
+        // ...
+    </header>
+  );
+}
+// We can also write the expression inside {} instead of variable
+```  
+
+5. **Rendering Images in React**  
+When we pass `src` to `img` tag in react, the image might be lost or not included in package during build.  
+Instead, one must pass these image sources as variable after importing them using `import`
+```jsx
+import reactImg from './assets/react-core-concepts.png'
+
+function Header() {
+    // ..
+  return (
+    <header>
+        // ..
+        <img src={reactImg} alt="Stylized atom" />
+        // ..
+      </header>
+  );
+}
 ```
