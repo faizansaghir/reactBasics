@@ -106,3 +106,75 @@ function Header() {
   );
 }
 ```
+
+6. **Props**  
+- Similar to attribute and value in built-in components, when we pass key value pair to custom components, they are called props.  
+- The key of the prop can be any custom name we want and then value that can be passed to the prop is any type i.e. object, array, number, string.  
+- The custom component can get this prop as a parameter. The prop parameter is a single parameter that will be an object which will contain the prop name as key and prop value as the corresponding value.  
+
+*We can pass the props as key value pair or as single object*
+```jsx
+function App() {
+  return (
+    <div>
+        // ...
+        <CoreConcept 
+            title={CORE_CONCEPTS[0].title} 
+            description={CORE_CONCEPTS[0].description} 
+            image={CORE_CONCEPTS[0].image}
+        />
+        <CoreConcept {...CORE_CONCEPTS[1]}/>
+        // ...
+    </div>
+  );
+}
+```
+
+*We can access the prop as single object or we can destructure it or group all props into a single object*
+```jsx
+function CoreConceptSingleObject(props) {
+  return (
+    <li>
+      <img src={props.image} alt={props.title}/>
+      <h3>{props.title}</h3>
+      <p>{props.description}</p>
+    </li>
+  );
+}
+
+OR
+
+function CoreConceptDescrtuctured({title, image, description}) {
+  return (
+    <li>
+      <img src={image} alt={title}/>
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </li>
+  );
+}
+
+OR
+
+function CoreConceptGrouped({...concept}) {
+  return (
+    <li>
+      <img src={concept.image} alt={tconcept.itle}/>
+      <h3>{concept.title}</h3>
+      <p>{concept.description}</p>
+    </li>
+  );
+}
+```
+*We can also set default value for a prop*
+```jsx
+function CoreConceptDescrtuctured({title="title", image, description}) {
+  return (
+    <li>
+      <img src={image} alt={title}/>
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </li>
+  );
+}
+```
