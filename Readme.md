@@ -111,6 +111,7 @@ function Header() {
 - Similar to attribute and value in built-in components, when we pass key value pair to custom components, they are called props.  
 - The key of the prop can be any custom name we want and then value that can be passed to the prop is any type i.e. object, array, number, string.  
 - The custom component can get this prop as a parameter. The prop parameter is a single parameter that will be an object which will contain the prop name as key and prop value as the corresponding value.  
+- It increases the reusability of a component.  
 
 *We can pass the props as key value pair or as single object*
 ```jsx
