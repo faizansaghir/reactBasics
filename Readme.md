@@ -229,4 +229,23 @@ export default function TabButton({children, onSelect}){
         <button onClick={onSelect}>{children}</button>
     </li>
 }
+```  
+
+9. **Hooks**  
+Hooks are react function that can be imported from `react` library and follow the convention of `use` followed by object name. eg: `useState`. These hooks should be used inside functional components or inside other hooks only. These functions/ hooks should be used on top-level of the functional component and not inside any nested function.  
+    - ***useState***: This is used to create sttes which are variables which when changed , tells react that the component needs to be re-rendered. This function when called, returns an array of 2 object. The first is snapshot of the state at that point, while the second object will be actually a function that will be used to update the snapshot value. This function when executed, informs react that the component must be re-executed.  
+    
+    *When we use setState function, it schedules the execution of the function and when the app re-rendered, it then changes the value of the state. Hence, if we setState and then immediately after, we execute or print the state, it will show the stale value as the state will not be updated on the go rather it will wait for re-rendering.*  
+```jsx
+import { useState } from 'react'
+
+function App() {
+  const [selectedTopic, setSelectedTopic] = useState('components')
+
+  function handleSelect(selectedButton){
+    setSelectedTopic(selectedButton)
+    console.log(selectedTopic); // Print stale value as this usually executes before re-rendering can happen
+  } 
+  // ...
+}
 ```
