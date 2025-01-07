@@ -232,7 +232,7 @@ export default function TabButton({children, onSelect}){
 ```  
 
 9. **Hooks**  
-Hooks are react function that can be imported from `react` library and follow the convention of `use` followed by object name. eg: `useState`. These hooks should be used inside functional components or inside other hooks only. These functions/ hooks should be used on top-level of the functional component and not inside any nested function.  
+Hooks are react function that can be imported from `react` library and follow the convention of `use` followed by object name. eg: `useState`. These hooks should be used inside functional components or inside other hooks only. These functions/ hooks should be used on top-level of the functional component and not inside any nested function or conditional statements (if-else).  
     - ***useState***: This is used to create sttes which are variables which when changed , tells react that the component needs to be re-rendered. This function when called, returns an array of 2 object. The first is snapshot of the state at that point, while the second object will be actually a function that will be used to update the snapshot value. This function when executed, informs react that the component must be re-executed.  
     
     *When we use setState function, it schedules the execution of the function and when the app re-rendered, it then changes the value of the state. Hence, if we setState and then immediately after, we execute or print the state, it will show the stale value as the state will not be updated on the go rather it will wait for re-rendering.*  
@@ -248,4 +248,98 @@ function App() {
   } 
   // ...
 }
-```
+```  
+
+10. **Conditional Rendering**  
+We have many ways of conditionally rendering or skipping a component
+    - ***Multiple Ternary operator***: Each element to be conditionally rendered has ternary operator whose true or false renderes the component while the other path of execution handles rendering null.
+    ```jsx
+    function App() {
+    // ...
+    return (
+        <div>
+            // ...
+            {!selectedTopic ? <p>Please select a topic.</p>: null}
+            {selectedTopic ? <div id="tab-content">
+            <h3>{EXAMPLES[selectedTopic].title}</h3>
+            <p>{EXAMPLES[selectedTopic].description}</p>
+            <pre>
+                <code>
+                {EXAMPLES[selectedTopic].code}
+                </code>
+            </pre>
+            </div> : null}
+            // ...
+        </div>
+    );
+    }
+    ```  
+    - ***Combined Ternary Operator***: The two elements to be conditionally rendered have ternary operator whose true renderes one of the component while the other path of execution handles rendering other component.  
+    ```jsx
+    function App() {
+    // ...
+    return (
+        <div>
+            // ...
+            {!selectedTopic ? <p>Please select a topic.</p>: <div id="tab-content">
+                <h3>{EXAMPLES[selectedTopic].title}</h3>
+                <p>{EXAMPLES[selectedTopic].description}</p>
+                <pre>
+                <code>
+                    {EXAMPLES[selectedTopic].code}
+                </code>
+                </pre>
+            </div>
+            }
+            // ...
+        </div>
+    );
+    }
+    ```
+    - ***Condition && Component***: Each component to be rendered is `&&` with the condition under which it should be rendered.
+    ```jsx
+    function App() {
+    // ...
+    return (
+        <div>
+            // ...
+            {!selectedTopic && <p>Please select a topic.</p>}
+            {selectedTopic && <div id="tab-content">
+                <h3>{EXAMPLES[selectedTopic].title}</h3>
+                <p>{EXAMPLES[selectedTopic].description}</p>
+                <pre>
+                <code>
+                    {EXAMPLES[selectedTopic].code}
+                </code>
+                </pre>
+            </div>}
+            // ...
+        </div>
+    );
+    }
+    ```
+    - ***Default variable value with conditional override***: A variable is defined which by default has some Component JSX code that should be rendered. This is overridden based on some condition.
+    ```jsx
+    function App() {
+    // ...
+    let tabContent = <p>Please select a topic.</p>
+    if(selectedTopic){
+        tabContent =  <div id="tab-content">
+                        <h3>{EXAMPLES[selectedTopic].title}</h3>
+                        <p>{EXAMPLES[selectedTopic].description}</p>
+                        <pre>
+                        <code>
+                            {EXAMPLES[selectedTopic].code}
+                        </code>
+                        </pre>
+                    </div>
+    }
+    return (
+        <div>
+            // ...
+            {tabContent}
+            // ...
+        </div>
+    );
+    }
+    ```
