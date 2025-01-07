@@ -343,3 +343,32 @@ We have many ways of conditionally rendering or skipping a component
     );
     }
     ```
+11. **Styling in React and Dynamic Styling**  
+We can use similar steps as in conditionally rendering component to apply style conditionally to Components.  
+*React uses `className` instead class as prop for builtin elements to apply class based styling*  
+
+***TabButton.jsx***
+```jsx
+export default function TabButton({children, onSelect, isSelected}){
+    return <li>
+        <button className={isSelected?'active':undefined} onClick={onSelect}>{children}</button>
+    </li>
+}
+```
+***App.jsx***
+```jsx
+function App() {
+  const [selectedTopic, setSelectedTopic] = useState()
+  // ...
+  return (
+    <div>
+        // ...
+        <TabButton isSelected={selectedTopic==='components'} onSelect={() => handleSelect('components')}>Components</TabButton>
+        <TabButton isSelected={selectedTopic==='jsx'} onSelect={() => handleSelect('jsx')}>JSX</TabButton>
+        <TabButton isSelected={selectedTopic==='props'} onSelect={() => handleSelect('props')}>Props</TabButton>
+        <TabButton isSelected={selectedTopic==='state'} onSelect={() => handleSelect('state')}>State</TabButton>
+        // ...
+    </div>
+  );
+}
+```
