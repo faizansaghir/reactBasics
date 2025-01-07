@@ -179,3 +179,54 @@ function CoreConceptDescrtuctured({title="title", image, description}) {
   );
 }
 ```
+
+7. **Children prop**  
+The default prop that is always passed to the functional component is `children` prop which can be access using `prop.children`. This contains any element or text between the opening and closing custom component tag. This process of wrapping component inside custom component is called Component Composition.  
+*Only `children` prop has pre-defined name, rest any other prop can has any name other than `children`*
+```jsx
+export default function TabButton(props){
+    return <li><button>{props.children}</button></li>
+}
+
+OR  
+
+export default function TabButton({children}){
+    return <li><button>{children}</button></li>
+}
+```  
+
+8. **Handler props for Built-in Components**  
+The built-in components have props that can handle events. These are then compiled by compiler to convert to proper handler functions. These function start with `on` followed by a verb.  
+
+*The function to be executed in handler functions are usually passed from Component where all components are present that are to be affected by the event down to children.*  
+*When a handler function is to be executed with some parameters, we usually pass the function inside an arrow function. The arrow function calls the function with required parameter*  
+*If we use variables to render dynamic content, changing value of variable does not trigger re-execution thus, re-rendering of components. Thus, even after changing value of variable, the rendered value will still be same.*  
+
+***App.jsx***  
+```jsx
+function App() {
+  function handleSelect(selectedButton){
+    console.log(selectedButton);
+    tabContent = selectedButton;
+  }
+
+  let tabContent = 'Please click a button'
+
+  return (
+    <div>
+        // ...
+        <TabButton onSelect={() => handleSelect('Components')}>Components</TabButton>
+        {tabContent}
+        // ...
+    </div>
+  );
+}
+```
+***TabButton.jsx***
+```jsx
+export default function TabButton({children, onSelect}){
+    return <li>
+        <button onClick={onSelect}>{children}</button>
+    </li>
+}
+```
