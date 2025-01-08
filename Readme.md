@@ -372,3 +372,26 @@ function App() {
   );
 }
 ```
+
+12. **Output Dynamic List of Components using `map`**
+We can output a list of Components by mapping the value of an array to JSX element.  
+```jsx
+function App() {
+    // ...
+  return (
+    <div>
+        // ...
+        <ul>
+            {CORE_CONCEPTS.map(conceptItem => (
+                <CoreConcept key={conceptItem.title}
+                title={conceptItem.title} 
+                description={conceptItem.description} 
+                image={conceptItem.image}
+            />
+            ))}
+        </ul>
+        // ...
+    </div>
+  );
+}
+```
