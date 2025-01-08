@@ -373,7 +373,7 @@ function App() {
 }
 ```
 
-12. **Output Dynamic List of Components using `map`**
+12. **Output Dynamic List of Components using `map`**  
 We can output a list of Components by mapping the value of an array to JSX element.  
 ```jsx
 function App() {
