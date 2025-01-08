@@ -395,3 +395,27 @@ function App() {
   );
 }
 ```
+
+13. **Fragments**  
+Since JS does not allow multiple values to be returned (multiple values can be returned which are contained within an object like array or object but not as individual multi return), hence the return of React JSX needs a parent element to wrap it.  
+This creates additional redundant wrapping tag like `div` tag which is not necessary to have.  
+This can be avaoided using `Fragments` or `empty tags`  
+```jsx
+import Fragment from 'react'
+
+return (
+    <Fragment>
+      <h2>Header</h2>
+      <p>Paragraph text</p>
+    </Fragment>
+  );
+
+OR
+
+return (
+    <>
+      <h2>Header</h2>
+      <p>Paragraph text</p>
+    </>
+  );
+```
