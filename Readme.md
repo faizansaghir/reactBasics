@@ -419,3 +419,18 @@ return (
     </>
   );
 ```
+
+14. **Forwarding Props**  
+We can extract props we need in our Components by destructuring and collect rest in a single object.  
+These remaining props can then be forwarded to children Components using spead operator.  
+This process of passing props to children is called Forwarding Props.  
+```jsx
+export default function Section({title, children, ...props}){
+    return (
+        <section {...props}>
+          <h2>Examples</h2>
+          {children}
+        </section>
+    )
+}
+```
