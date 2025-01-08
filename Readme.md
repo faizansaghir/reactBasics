@@ -434,3 +434,42 @@ export default function Section({title, children, ...props}){
     )
 }
 ```
+
+15. **Setting Component Types Dynamically**  
+We can pass Component type as prop to a Component and use that prop to create Components based on the value passed.  
+This includes both Custom and Builtin Components.  
+
+***Custom Component***
+```jsx
+<Tabs ButtonContainer={Section}
+  buttons={<>
+    // ...
+  </>
+} >
+  {tabContent}
+</Tabs>
+```
+
+***Builtin Component***
+```jsx
+<Tabs ButtonContainer='menu'
+  buttons={<>
+    // ...
+  </>
+} >
+  {tabContent}
+</Tabs>
+```
+
+***Tabs.jsx***
+```jsx
+export default function Tabs({children, buttons, ButtonContainer}) {
+    return (
+        <>
+            <menu>{buttons}</menu>
+            {children}
+        </>
+    )
+}
+```
+*We should either accept the prop in Pascal case or we can use `const ButtonContainer = buttonContainer` if we might have accepted the prop as camelcase and then use `ButtonContainer`*  
